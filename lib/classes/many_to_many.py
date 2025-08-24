@@ -32,12 +32,12 @@ class Article:
         return self._title
 
     @title.setter
-    def title(self, value):
+    def title(self, title):
         if hasattr(self, '_title'):
             raise AttributeError("Cannot change article's title after it has been set.")
-        if not isinstance(value, str) or not (5 <= len(value) <= 50):
+        if not isinstance(title, str) or not (5 <= len(title) <= 50):
             raise ValueError("Title must be a string between 5 and 50 characters.")
-        self._title = value
+        self._title = title
 
 
 
@@ -50,12 +50,12 @@ class Author:
         return self._name
 
     @name.setter
-    def name(self, value):
+    def name(self, name):
         if hasattr(self, '_name'):
             raise AttributeError("Cannot change author's name after it has been set.")
-        if not isinstance(value, str) or len(value) == 0:
+        if not isinstance(name, str) or len(name) == 0:
             raise ValueError("Name must be a non-empty string.")
-        self._name = value
+        self._name = name
 
     def articles(self):
         return [article for article in Article.all if article.author == self]
@@ -86,20 +86,20 @@ class Magazine:
         return self._name
 
     @name.setter
-    def name(self, value):
-        if not isinstance(value, str) or not (2 <= len(value) <= 16):
+    def name(self, name):
+        if not isinstance(name, str) or not (2 <= len(name) <= 16):
             raise ValueError("Magazine name must be a string between 2 and 16 characters.")
-        self._name = value
+        self._name = name
 
     @property
     def category(self):
         return self._category
 
     @category.setter
-    def category(self, value):
-        if not isinstance(value, str) or len(value) == 0:
+    def category(self, category):
+        if not isinstance(category, str) or len(category) == 0:
             raise ValueError("Category must be a non-empty string.")
-        self._category = value
+        self._category = category
 
     def articles(self):
         return [article for article in Article.all if article.magazine == self]
